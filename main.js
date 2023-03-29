@@ -74,6 +74,28 @@ subtract.addEventListener('click', () => {
     allSelections.push(calculation)
 })
 
+// Multiply
+multiply.addEventListener('click', () => {
+    window.getSelection().empty(); // Remove selection (in Chrome only?)
+    let firstNumber = allSelections.shift()
+    sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
+    calculation = firstNumber * sum
+    divResult.innerText = calculation
+    allSelections.length = 0
+    allSelections.push(calculation)
+})
+
+// Division
+divide.addEventListener('click', () => {
+    window.getSelection().empty(); // Remove selection (in Chrome only?)
+    let firstNumber = allSelections.shift()
+    sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
+    calculation = firstNumber / sum
+    divResult.innerText = calculation
+    allSelections.length = 0
+    allSelections.push(calculation)
+})
+
 // selectionOne has to be an array with ALL numbers multiplied together. If one number is only in array, use just one. 
 // e.g. selectionOne = [2014, 20, 8], remove first number, e.g. selectionOne = [20, 8] and multipliy remaining
 // e.g. selectionOne = [28], e.g. calculation = numbersToCalculate - selectionOne
