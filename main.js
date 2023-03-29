@@ -44,12 +44,14 @@ const multiply = document.getElementById("multiply");
 let selection, finalResult, calculation, sum
 let allSelections = []
 
+// Get selection
 document.addEventListener('mouseup', function() {
     selection = window.getSelection().toString() // Get Selection as a string
     if (selection && !isNaN(selection)) {
         let selectionToNumber = Math.floor(selection * 100) / 100 // Convert string to number and use also dot-decimals of 2 (comma-decimals following)
         allSelections.push(selectionToNumber)
         console.log(allSelections)
+        divHistory.innerText += selectionToNumber
         window.getSelection().empty(); // Remove selection (in Chrome only?)
     }
 });
@@ -59,6 +61,7 @@ add.addEventListener('click', () => {
     window.getSelection().empty(); // Remove selection (in Chrome only?)
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array
     divResult.innerText = sum
+    divHistory.innerText = sum
     allSelections.length = 0 // Clear array before summarizing previous to avoid double value
     allSelections.push(sum)
 })
@@ -70,6 +73,7 @@ subtract.addEventListener('click', () => {
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
     calculation = firstNumber - sum
     divResult.innerText = calculation
+    divHistory.innerText = calculation
     allSelections.length = 0
     allSelections.push(calculation)
 })
@@ -81,6 +85,7 @@ multiply.addEventListener('click', () => {
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
     calculation = firstNumber * sum
     divResult.innerText = calculation
+    divHistory.innerText = calculation
     allSelections.length = 0
     allSelections.push(calculation)
 })
@@ -92,6 +97,7 @@ divide.addEventListener('click', () => {
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
     calculation = firstNumber / sum
     divResult.innerText = calculation
+    divHistory.innerText = calculation
     allSelections.length = 0
     allSelections.push(calculation)
 })
