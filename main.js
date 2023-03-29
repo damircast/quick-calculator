@@ -47,7 +47,7 @@ let allSelections = []
 document.addEventListener('mouseup', function() {
     selection = window.getSelection().toString() // Get Selection as a string
     if (selection && !isNaN(selection)) {
-        let selectionToNumber = Math.floor(selection) // Convert string to number
+        let selectionToNumber = Math.floor(selection * 100) / 100 // Convert string to number and use also dot-decimals of 2 (comma-decimals following)
         allSelections.push(selectionToNumber)
         console.log(allSelections)
         window.getSelection().empty(); // Remove selection (in Chrome only?)
@@ -74,7 +74,7 @@ subtract.addEventListener('click', () => {
     allSelections.push(calculation)
 })
 
-// Multiply
+// Multiplication
 multiply.addEventListener('click', () => {
     window.getSelection().empty(); // Remove selection (in Chrome only?)
     let firstNumber = allSelections.shift()
