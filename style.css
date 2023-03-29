@@ -1,0 +1,32 @@
+#calc-button {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; */
+}
+#calc-button button {
+    width: 40px;
+    background-color: rgb(108, 181, 255);
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    margin-right: 5px;
+}
+
+#finalResult {
+    position: relative;
+    font-size: 2.3rem;
+    background-color: #6bb5ff;
+    color: #ffffff;
+    margin-top: 10px;
+    border: 1px solid #599cdf;
+}
+
+#calc-parent {
+    z-index: 9999;
+    position: fixed;
+    top: 75vh;
+    border: 1px solid rgb(157, 195, 255);
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.856);
+}
