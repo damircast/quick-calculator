@@ -50,6 +50,7 @@ divParent.classList.add("hidden")
 document.addEventListener('mouseup', function() {
     selection = window.getSelection().toString() // Get Selection as a string
     if (selection && !isNaN(selection)) {
+        // Hide calculator first
         divParent.classList.remove("hidden")
         let selectionToNumber = Math.floor(selection * 100) / 100 // Convert string to number and use also dot-decimals of 2 (comma-decimals following)
         allSelections.push(selectionToNumber)
