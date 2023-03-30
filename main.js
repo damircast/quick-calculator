@@ -44,7 +44,7 @@ const divide = document.getElementById("divide");
 const multiply = document.getElementById("multiply");
 
 // States
-let selection, finalResult, calculation, sum
+let selection, finalResult, calculation, sum, selectionToNumber
 let allSelections = []
 
 divParent.classList.add("hidden")
@@ -71,7 +71,7 @@ document.addEventListener('mouseup', function() {
     if (selection && !isNaN(selection)) {
         // Hide calculator first
         divParent.classList.remove("hidden")
-        let selectionToNumber = Math.floor(selection * 100) / 100 // Convert string to number and use also dot-decimals of 2 (comma-decimals following)
+        selectionToNumber = Math.floor(selection * 100) / 100 // Convert string to number and use also dot-decimals of 2 (comma-decimals following)
         allSelections.push(selectionToNumber)
         console.log(allSelections)
 
@@ -105,7 +105,6 @@ subtract.addEventListener('click', () => {
     // Create always a div element and add new number in each div
     // createResultElementOnly(sum)
     createDigitSelectionElement(calculation) // Solution for showing Zwischenschritt 
-    // divHistory.innerText = calculation
     allSelections.length = 0
     allSelections.push(calculation)
     divHistory.lastElementChild.style.border = '2px solid #749fe4' // Styling Zwischenschritt, is optional, only if createDigitSelectionElement(sum) is used
@@ -114,13 +113,12 @@ subtract.addEventListener('click', () => {
 // Multiplication
 multiply.addEventListener('click', () => {
     window.getSelection().empty(); // Remove selection (in Chrome only?)
-    let firstNumber = allSelections.shift()
-    sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
-    calculation = firstNumber * sum
-    divResult.innerText = calculation
-    divHistory.innerText = calculation
+    sum = allSelections.reduce((a, b) => a * b, 1) // Summarize all numbers in the array without the first
+    divResult.innerText = sum
+    createDigitSelectionElement(sum) // Solution for showing Zwischenschritt
     allSelections.length = 0
-    allSelections.push(calculation)
+    allSelections.push(sum)
+    divHistory.lastElementChild.style.border = '2px solid #749fe4' // Styling Zwischenschritt, is optional, only if createDigitSelectionElement(sum) is used
 })
 
 // Division
@@ -130,9 +128,10 @@ divide.addEventListener('click', () => {
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
     calculation = firstNumber / sum
     divResult.innerText = calculation
-    divHistory.innerText = calculation
+    createDigitSelectionElement(calculation) // Solution for showing Zwischenschritt
     allSelections.length = 0
     allSelections.push(calculation)
+    divHistory.lastElementChild.style.border = '2px solid #749fe4' // Styling Zwischenschritt, is optional, only if createDigitSelectionElement(sum) is used
 })
 
 // selectionOne has to be an array with ALL numbers multiplied together. If one number is only in array, use just one. 
