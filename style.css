@@ -34,3 +34,11 @@
 .hidden {
     display: none;
 }
+
+.calc-digit {
+    border: 1px solid rgb(157, 195, 255);
+    border-radius: 4px;
+    padding: 2px;
+    display: inline-block;
+    margin: 0 4px 4px 0;
+}

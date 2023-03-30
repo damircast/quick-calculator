@@ -2,6 +2,7 @@
 
     const divParent = document.createElement("div");
     const divHistory = document.createElement("div");
+    // const spanSingleNumber = document.createElement("span");
     const div1 = document.createElement("div");
     const divResult = document.createElement("div");
     
@@ -12,6 +13,7 @@
     
     divParent.setAttribute("id","calc-parent");
     divHistory.setAttribute("id","calc-history");
+    // spanSingleNumber.setAttribute("class","calc-digit");
     div1.setAttribute("id","calc-button");
     divResult.setAttribute("id","finalResult");
     
@@ -27,6 +29,7 @@
     
     document.body.appendChild(divParent)
     divParent.appendChild(divHistory)
+    // divHistory.appendChild(spanSingleNumber)
     divParent.appendChild(div1)
     divParent.appendChild(divResult)
     div1.appendChild(button1)
@@ -46,6 +49,13 @@ let allSelections = []
 
 divParent.classList.add("hidden")
 
+const createDigitElement = (num) => {
+    const span = document.createElement("div");
+    span.classList = 'calc-digit'
+    span.innerText = num
+    divHistory.appendChild(span)
+}
+
 // Get selection
 document.addEventListener('mouseup', function() {
     selection = window.getSelection().toString() // Get Selection as a string
@@ -55,7 +65,10 @@ document.addEventListener('mouseup', function() {
         let selectionToNumber = Math.floor(selection * 100) / 100 // Convert string to number and use also dot-decimals of 2 (comma-decimals following)
         allSelections.push(selectionToNumber)
         console.log(allSelections)
-        divHistory.innerText += selectionToNumber
+
+        // Create always a div element and add new number in each div
+        createDigitElement(selectionToNumber)
+        // spanSingleNumber.innerText += selectionToNumber
         window.getSelection().empty(); // Remove selection (in Chrome only?)
     }
 });
@@ -65,7 +78,9 @@ add.addEventListener('click', () => {
     window.getSelection().empty(); // Remove selection (in Chrome only?)
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array
     divResult.innerText = sum
-    divHistory.innerText = sum
+    // Create always a div element and add new number in each div
+    createDigitElement(sum)
+    // divHistory.innerText = sum
     allSelections.length = 0 // Clear array before summarizing previous to avoid double value
     allSelections.push(sum)
 })
