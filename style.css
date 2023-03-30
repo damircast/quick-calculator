@@ -30,3 +30,7 @@
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.856);
 }
+
+.hidden {
+    display: none;
+}
