@@ -49,11 +49,20 @@ let allSelections = []
 
 divParent.classList.add("hidden")
 
-const createDigitElement = (num) => {
-    const span = document.createElement("div");
-    span.classList = 'calc-digit'
-    span.innerText = num
-    divHistory.appendChild(span)
+const createDigitSelectionElement = (num) => {
+    // Create for each selection one element
+    const div = document.createElement("div");
+    div.classList = 'calc-digit'
+    div.innerText = num
+    divHistory.appendChild(div)
+}
+const createResultElementOnly = (num) => {
+    // Remove all existing elements before creating single result element
+    divHistory.innerHTML = '';
+    const div = document.createElement("div");
+    div.classList = 'calc-digit'
+    div.innerText = num
+    divHistory.appendChild(div)
 }
 
 // Get selection
@@ -67,7 +76,7 @@ document.addEventListener('mouseup', function() {
         console.log(allSelections)
 
         // Create always a div element and add new number in each div
-        createDigitElement(selectionToNumber)
+        createDigitSelectionElement(selectionToNumber)
         // spanSingleNumber.innerText += selectionToNumber
         window.getSelection().empty(); // Remove selection (in Chrome only?)
     }
@@ -79,10 +88,11 @@ add.addEventListener('click', () => {
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array
     divResult.innerText = sum
     // Create always a div element and add new number in each div
-    createDigitElement(sum)
-    // divHistory.innerText = sum
+    // createResultElementOnly(sum)
+    createDigitSelectionElement(sum) // Solution for showing Zwischenschritt 
     allSelections.length = 0 // Clear array before summarizing previous to avoid double value
     allSelections.push(sum)
+    divHistory.lastElementChild.style.border = '2px solid #749fe4' // Styling Zwischenschritt, is optional, only if createDigitSelectionElement(sum) is used
 })
 
 // Substraction
