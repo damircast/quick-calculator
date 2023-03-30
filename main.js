@@ -115,6 +115,8 @@ multiply.addEventListener('click', () => {
     window.getSelection().empty(); // Remove selection (in Chrome only?)
     sum = allSelections.reduce((a, b) => a * b, 1) // Summarize all numbers in the array without the first
     divResult.innerText = sum
+    // Create always a div element and add new number in each div
+    // createResultElementOnly(sum)
     createDigitSelectionElement(sum) // Solution for showing Zwischenschritt
     allSelections.length = 0
     allSelections.push(sum)
@@ -128,6 +130,8 @@ divide.addEventListener('click', () => {
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
     calculation = firstNumber / sum
     divResult.innerText = calculation
+    // Create always a div element and add new number in each div
+    // createResultElementOnly(sum)
     createDigitSelectionElement(calculation) // Solution for showing Zwischenschritt
     allSelections.length = 0
     allSelections.push(calculation)
