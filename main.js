@@ -49,11 +49,11 @@ let allSelections = []
 
 divParent.classList.add("hidden")
 
-const createDigitSelectionElement = (num) => {
+const createDigitSelectionElement = (sum) => {
     // Create for each selection one element
     const div = document.createElement("div");
     div.classList = 'calc-digit'
-    div.innerText = num
+    div.innerText = sum
     divHistory.appendChild(div)
 }
 const createResultElementOnly = (num) => {
@@ -102,9 +102,13 @@ subtract.addEventListener('click', () => {
     sum = allSelections.reduce((a, b) => a + b, 0) // Summarize all numbers in the array without the first
     calculation = firstNumber - sum
     divResult.innerText = calculation
-    divHistory.innerText = calculation
+    // Create always a div element and add new number in each div
+    // createResultElementOnly(sum)
+    createDigitSelectionElement(calculation) // Solution for showing Zwischenschritt 
+    // divHistory.innerText = calculation
     allSelections.length = 0
     allSelections.push(calculation)
+    divHistory.lastElementChild.style.border = '2px solid #749fe4' // Styling Zwischenschritt, is optional, only if createDigitSelectionElement(sum) is used
 })
 
 // Multiplication
