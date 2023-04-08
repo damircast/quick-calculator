@@ -4,9 +4,9 @@
   "description": "A calculator extension that allows you to perform calculations on any webpage",
   "manifest_version": 3,
   "icons": {
-    "16": "./images/16.png",
-    "48": "./images/48.png",
-    "128": "./images/128.png"
+    "16": "./assets/16.png",
+    "48": "./assets/48.png",
+    "128": "./assets/128.png"
   },
   "permissions": ["activeTab"],
   "content_scripts": [{

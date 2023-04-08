@@ -12,7 +12,7 @@
     
     divParent.setAttribute("id","calc-parent");
     divHistory.setAttribute("id","calc-history");
-    div1.setAttribute("id","calc-button");
+    div1.setAttribute("id","calc-buttons");
     div2.setAttribute("id","finalResult");
     
     button1.setAttribute("id","add");
